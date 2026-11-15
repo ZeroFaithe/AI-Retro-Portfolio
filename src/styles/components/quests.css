@@ -1,0 +1,405 @@
+/* QUEST LOG — PDC10 activity cards + detail dialog */
+
+.quests__bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px 24px;
+  margin-bottom: 36px;
+}
+
+.quests__count {
+  font-family: var(--font-pixel);
+  font-size: 10px;
+  color: var(--c-gold);
+}
+
+.quest-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 36px 32px;
+}
+
+.quest {
+  --zone: var(--c-sky);
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+}
+
+.quest__media {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  background: var(--c-void);
+  box-shadow: 0 0 0 var(--px) var(--c-void);
+}
+
+.quest__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top left;
+}
+
+/* pixel cover for activities with no screenshots */
+.quest__cover {
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: 14px;
+  height: 100%;
+  background:
+    linear-gradient(45deg, rgba(7, 15, 34, 0.35) 25%, transparent 25% 75%, rgba(7, 15, 34, 0.35) 75%) 0 0 / 24px 24px,
+    linear-gradient(45deg, rgba(7, 15, 34, 0.35) 25%, transparent 25% 75%, rgba(7, 15, 34, 0.35) 75%) 12px 12px / 24px 24px,
+    linear-gradient(180deg, var(--c-navy), var(--c-void));
+}
+
+.quest__cover-no {
+  font-family: var(--font-pixel);
+  font-size: 44px;
+  color: var(--zone);
+  text-shadow: 4px 4px 0 var(--c-void), 8px 8px 0 var(--c-deep);
+}
+
+.quest__cover-kind {
+  padding: 4px 8px;
+  font-family: var(--font-pixel);
+  font-size: 8px;
+  color: var(--c-void);
+  background: var(--zone);
+}
+
+.quest__zone {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 6px 8px;
+  font-family: var(--font-pixel);
+  font-size: 8px;
+  color: var(--c-void);
+  background: var(--zone);
+  box-shadow: 0 0 0 var(--px) var(--c-void);
+}
+
+.quest__body {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex: 1;
+  padding: 18px 4px 4px;
+}
+
+.quest__meta {
+  font-family: var(--font-pixel);
+  font-size: 8px;
+  color: var(--c-sky);
+}
+
+.quest__title {
+  font-size: 13px;
+  color: var(--c-ice);
+}
+
+.quest__codename {
+  font-family: var(--font-pixel);
+  font-size: 8px;
+  line-height: 1.7;
+  color: var(--c-gold);
+}
+
+.quest__summary {
+  color: #d3e6ff;
+}
+
+.quest__loot {
+  display: grid;
+  gap: 8px;
+  font-family: var(--font-pixel);
+  font-size: 9px;
+  line-height: 1.8;
+  color: var(--c-lime);
+}
+
+.quest__loot span {
+  justify-self: start;
+  padding: 3px 6px;
+  line-height: 1.2;
+  color: var(--c-void);
+  background: var(--c-gold);
+}
+
+.quest__body .btn {
+  align-self: flex-start;
+  margin-top: auto;
+}
+
+/* Dialog */
+.quest-dialog {
+  --zone: var(--c-sky);
+  /* .window sets position: relative; a modal must stay fixed to the viewport */
+  position: fixed;
+  inset: 0;
+  width: min(860px, calc(100vw - 32px));
+  max-height: calc(100vh - 60px);
+  overflow: auto;
+  margin: auto;
+  border: 0;
+  color: var(--text);
+}
+
+.quest-dialog::backdrop {
+  background: rgba(7, 15, 34, 0.82);
+  backdrop-filter: blur(2px);
+}
+
+.quest-dialog[open] {
+  animation: pop 0.25s steps(4);
+}
+
+.quest-dialog__close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 2;
+}
+
+.quest-dialog__media {
+  aspect-ratio: 16 / 9;
+  margin-bottom: 20px;
+  overflow: hidden;
+  box-shadow: 0 0 0 var(--px) var(--c-void);
+}
+
+.quest-dialog__title {
+  margin: 8px 0 12px;
+  font-size: clamp(14px, 2.4vw, 18px);
+}
+
+.quest-dialog__text {
+  margin-bottom: 16px;
+  font-size: 1.5rem;
+}
+
+.quest-dialog__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 20px;
+}
+
+/* dialog: facts row */
+.qd-facts {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+  margin: 16px 0 12px;
+}
+
+.qd-facts div {
+  padding: 8px 10px;
+  background: rgba(7, 15, 34, 0.55);
+  box-shadow: 0 0 0 2px var(--zone);
+}
+
+.qd-facts dt {
+  margin-bottom: 4px;
+  font-family: var(--font-pixel);
+  font-size: 7px;
+  color: var(--zone);
+}
+
+.qd-facts dd {
+  font-size: 1.2rem;
+  line-height: 1.1;
+}
+
+.qd-facts__loot {
+  color: var(--c-gold);
+}
+
+.qd-team {
+  margin-bottom: 8px;
+  font-size: 1.2rem;
+  color: var(--c-gold);
+}
+
+.qd-block {
+  margin-top: 22px;
+}
+
+.qd-block .window__label {
+  margin-bottom: 10px;
+}
+
+.qd-list {
+  display: grid;
+  gap: 8px;
+  font-size: 1.35rem;
+}
+
+.qd-list li {
+  position: relative;
+  padding-left: 20px;
+}
+
+.qd-list li::before {
+  content: "▸";
+  position: absolute;
+  left: 2px;
+  color: var(--c-gold);
+}
+
+/* step flow (e.g. AI ecosystem) */
+.qd-flow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 26px;
+}
+
+.qd-flow li {
+  position: relative;
+  padding: 6px 10px;
+  font-size: 1.2rem;
+  color: var(--c-void);
+  background: var(--c-lcd);
+  box-shadow: 0 0 0 var(--px) var(--c-void);
+}
+
+.qd-flow li:not(:last-child)::after {
+  content: "▶";
+  position: absolute;
+  top: 50%;
+  right: -22px;
+  transform: translateY(-50%);
+  font-size: 11px;
+  color: var(--c-gold);
+}
+
+/* result tables */
+.qd-table-wrap {
+  overflow-x: auto;
+  margin: 0 var(--px) 18px;
+  box-shadow: 0 0 0 var(--px) var(--c-void);
+}
+
+.qd-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 1.2rem;
+  line-height: 1.15;
+  background: rgba(7, 15, 34, 0.6);
+}
+
+.qd-table caption {
+  padding: 8px 10px;
+  text-align: left;
+  font-family: var(--font-pixel);
+  font-size: 8px;
+  color: var(--c-void);
+  background: var(--zone);
+}
+
+.qd-table th,
+.qd-table td {
+  padding: 7px 10px;
+  text-align: left;
+  vertical-align: top;
+  border-bottom: 2px solid rgba(111, 211, 255, 0.15);
+}
+
+.qd-table thead th {
+  font-family: var(--font-pixel);
+  font-size: 7px;
+  color: var(--c-gold);
+  background: var(--c-void);
+  white-space: nowrap;
+}
+
+.qd-table tbody th {
+  min-width: 7em;
+  font-weight: 400;
+  color: var(--c-sky);
+}
+
+@media (max-width: 600px) {
+  /* wide tables scroll inside their own frame at a readable width */
+  .qd-table {
+    min-width: 540px;
+  }
+}
+
+.qd-table tr.is-total,
+.qd-table tr.is-total th {
+  color: var(--c-lime);
+}
+
+.qd-takeaway {
+  margin-top: 26px;
+}
+
+.qd-takeaway .dialog-box__text {
+  min-height: 0;
+  cursor: default;
+}
+
+/* screenshot gallery */
+.qd-shots {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 18px;
+}
+
+.qd-shot a {
+  display: block;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  background: var(--c-void);
+  box-shadow: 0 0 0 var(--px) var(--c-void);
+}
+
+.qd-shot a:hover {
+  box-shadow: 0 0 0 var(--px) var(--c-gold);
+}
+
+.qd-shot__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top left;
+}
+
+.qd-shot figcaption {
+  margin-top: 8px;
+  font-size: 1.1rem;
+  line-height: 1.15;
+  color: var(--text-dim);
+}
+
+.qd-shot figcaption b {
+  margin-right: 4px;
+  font-family: var(--font-pixel);
+  font-size: 7px;
+  color: var(--c-gold);
+}
+
+@media (max-width: 600px) {
+  .qd-facts {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@keyframes pop {
+  from { transform: scale(0.85); opacity: 0; }
+  to { transform: none; opacity: 1; }
+}
+
+@media (max-width: 400px) {
+  .quest-dialog {
+    padding: 16px;
+  }
+  .quest-grid {
+    grid-template-columns: 1fr;
+  }
+}

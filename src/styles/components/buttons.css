@@ -1,0 +1,141 @@
+/* Buttons, chips, toggles, tags, badges */
+
+.btn {
+  --btn-bg: var(--c-blue);
+  --btn-shade: var(--c-deep);
+  --btn-light: var(--c-azure);
+  --btn-text: var(--c-ice);
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin: var(--px);
+  padding: 14px 18px;
+  font-family: var(--font-pixel);
+  font-size: 10px;
+  line-height: 1.2;
+  text-decoration: none;
+  color: var(--btn-text);
+  background: var(--btn-bg);
+  box-shadow:
+    inset calc(var(--px) * -1) calc(var(--px) * -1) 0 var(--btn-shade),
+    inset var(--px) var(--px) 0 var(--btn-light),
+    0 0 0 var(--px) var(--c-void),
+    0 8px 0 var(--px) var(--c-void);
+  transform: translateY(0);
+  transition: transform 0.06s steps(1);
+}
+
+.btn:hover {
+  filter: brightness(1.12);
+}
+
+.btn:active {
+  transform: translateY(4px);
+  box-shadow:
+    inset var(--px) var(--px) 0 var(--btn-shade),
+    0 0 0 var(--px) var(--c-void),
+    0 4px 0 var(--px) var(--c-void);
+}
+
+.btn--gold {
+  --btn-bg: var(--c-gold);
+  --btn-shade: #d9a514;
+  --btn-light: #fff09c;
+  --btn-text: var(--c-void);
+}
+
+.btn--green {
+  --btn-bg: var(--c-green);
+  --btn-shade: var(--c-forest);
+  --btn-light: var(--c-lime);
+}
+
+.btn--ghost {
+  --btn-bg: var(--c-navy);
+  --btn-shade: var(--c-void);
+  --btn-light: var(--c-deep);
+}
+
+.btn--small {
+  padding: 10px 12px;
+  font-size: 9px;
+}
+
+/* Filter chips */
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.chip {
+  padding: 9px 12px;
+  font-family: var(--font-pixel);
+  font-size: 9px;
+  color: var(--text-dim);
+  background: var(--c-navy);
+  box-shadow: 0 0 0 var(--px) var(--c-deep);
+}
+
+.chip:hover {
+  color: var(--c-ice);
+  box-shadow: 0 0 0 var(--px) var(--c-sky);
+}
+
+.chip[aria-pressed="true"] {
+  color: var(--c-void);
+  background: var(--c-lime);
+  box-shadow: 0 0 0 var(--px) var(--c-void), 4px 4px 0 var(--px) var(--c-forest);
+}
+
+/* On/off toggles */
+.toggle {
+  display: inline-flex;
+  gap: 6px;
+  padding: 8px 10px;
+  font-family: var(--font-pixel);
+  font-size: 8px;
+  color: var(--text-dim);
+  background: var(--c-void);
+  box-shadow: 0 0 0 var(--px) var(--c-deep);
+}
+
+.toggle[aria-pressed="true"] .toggle__state {
+  color: var(--c-lime);
+}
+
+.toggle[aria-pressed="false"] .toggle__state {
+  color: var(--c-pink);
+}
+
+/* Tags */
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.tags li {
+  padding: 2px 8px;
+  font-size: 1.1rem;
+  color: var(--c-mint);
+  background: rgba(7, 15, 34, 0.55);
+  box-shadow: 0 0 0 2px var(--c-teal);
+}
+
+/* Status badges */
+.badge {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  padding: 6px 8px;
+  font-family: var(--font-pixel);
+  font-size: 8px;
+  color: var(--c-void);
+  box-shadow: 0 0 0 var(--px) var(--c-void);
+}
+
+.badge--complete { background: var(--c-lime); }
+.badge--in-progress { background: var(--c-gold); }
+.badge--planned { background: var(--c-pink); }

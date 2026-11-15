@@ -1,0 +1,239 @@
+/* WORLD MAP — course zones (modules) with stage buttons (activities) */
+
+.map-hud {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 20px;
+  margin: 0 var(--px) 40px;
+}
+
+.map-stat {
+  display: grid;
+  gap: 8px;
+  padding: 14px 16px;
+  background: var(--c-void);
+  box-shadow: 0 0 0 var(--px) var(--c-deep), 6px 6px 0 var(--px) rgba(3, 8, 20, 0.55);
+}
+
+.map-stat b {
+  font-family: var(--font-pixel);
+  font-size: clamp(14px, 2.2vw, 20px);
+  color: var(--c-gold);
+}
+
+.map-stat span {
+  font-family: var(--font-pixel);
+  font-size: 8px;
+  color: var(--text-dim);
+}
+
+/* zones */
+.map-path {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 36px 32px;
+  margin-bottom: 48px;
+}
+
+@media (min-width: 700px) {
+  .map-path {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  /* bonus zone fills the last row instead of sitting alone */
+  .zone:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+  }
+}
+
+.zone {
+  --zone: var(--c-sky);
+  --win-frame: var(--zone);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 18px 16px;
+}
+
+.zone__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.zone__tag {
+  padding: 5px 8px;
+  font-family: var(--font-pixel);
+  font-size: 9px;
+  color: var(--c-void);
+  background: var(--zone);
+  box-shadow: 0 0 0 var(--px) var(--c-void);
+}
+
+.zone__clear {
+  font-family: var(--font-pixel);
+  font-size: 8px;
+  color: var(--c-lime);
+  animation: blink 1.2s steps(2, jump-none) infinite;
+}
+
+.zone__name {
+  font-size: 11px;
+  line-height: 1.6;
+  color: var(--zone);
+}
+
+.zone__desc {
+  font-size: 1.2rem;
+  color: var(--text-dim);
+}
+
+.zone__stages {
+  display: grid;
+  gap: 10px;
+  margin-top: 4px;
+}
+
+.stage {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 8px 10px;
+  text-align: left;
+  color: var(--c-ice);
+  background: rgba(7, 15, 34, 0.7);
+  box-shadow: 0 0 0 2px var(--c-deep);
+  transition: transform 0.1s steps(2);
+}
+
+.stage:hover,
+.stage:focus-visible {
+  transform: translateX(4px);
+  box-shadow: 0 0 0 2px var(--zone);
+}
+
+.stage:hover .stage__no,
+.stage:focus-visible .stage__no {
+  background: var(--c-gold);
+}
+
+.stage__no {
+  padding: 4px 5px;
+  font-family: var(--font-pixel);
+  font-size: 8px;
+  color: var(--c-void);
+  background: var(--zone);
+}
+
+.stage__name {
+  font-size: 1.2rem;
+  line-height: 1.1;
+}
+
+.stage__team {
+  font-style: normal;
+  font-family: var(--font-pixel);
+  font-size: 7px;
+  color: var(--c-gold);
+  white-space: nowrap;
+}
+
+.stage__flag {
+  color: var(--c-gold);
+}
+
+.stage--side {
+  box-shadow: 0 0 0 2px var(--c-deep);
+  background: repeating-linear-gradient(135deg, rgba(7, 15, 34, 0.7) 0 6px, rgba(16, 36, 77, 0.7) 6px 12px);
+}
+
+.zone__lesson {
+  margin-top: auto;
+  padding-top: 10px;
+  font-size: 1.2rem;
+  color: var(--c-mint);
+  border-top: 2px dashed rgba(230, 246, 255, 0.2);
+}
+
+.zone__lesson span {
+  display: block;
+  margin-bottom: 4px;
+  font-family: var(--font-pixel);
+  font-size: 8px;
+  color: var(--c-gold);
+}
+
+/* path arrows between zones on wide screens */
+@media (min-width: 1180px) {
+  .map-path {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
+  .zone:last-child:nth-child(odd) {
+    grid-column: auto;
+  }
+  .zone:not(:last-child)::after {
+    content: "▶";
+    position: absolute;
+    top: 50%;
+    right: -30px;
+    font-size: 14px;
+    color: var(--c-gold);
+    animation: blink 0.9s steps(2, jump-none) infinite;
+  }
+}
+
+/* footer: growth log + token wallets */
+.map-foot {
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+  gap: 32px;
+  align-items: start;
+}
+
+.map-growth .dialog-box__text {
+  min-height: 0;
+  cursor: default;
+}
+
+.wallets {
+  display: grid;
+  gap: 16px;
+  padding: 20px;
+}
+
+.wallets .window__label {
+  margin-bottom: 0;
+}
+
+.wallet {
+  display: grid;
+  gap: 8px;
+}
+
+.wallet__head {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  font-family: var(--font-pixel);
+  font-size: 8px;
+}
+
+.wallet__head b {
+  color: var(--c-gold);
+}
+
+.wallet__note {
+  font-size: 1.1rem;
+  color: var(--c-mint);
+}
+
+@media (max-width: 860px) {
+  .map-hud {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .map-foot {
+    grid-template-columns: 1fr;
+  }
+}

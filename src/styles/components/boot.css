@@ -1,0 +1,124 @@
+/* Title screen */
+
+.boot {
+  display: none;
+}
+
+.js .boot {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  text-align: center;
+  background: linear-gradient(
+    180deg,
+    var(--c-void) 0 30%,
+    #0b1a3c 30% 50%,
+    #10285a 50% 66%,
+    #143a7a 66% 80%,
+    var(--c-forest) 80% 86%,
+    var(--c-green) 86% 92%,
+    var(--c-lime) 92% 100%
+  );
+}
+
+.is-booting {
+  overflow: hidden;
+}
+
+.boot__stars {
+  position: absolute;
+  inset: 0 0 30%;
+  background-image:
+    radial-gradient(2px 2px at 12% 18%, #fff 50%, transparent 51%),
+    radial-gradient(2px 2px at 36% 42%, var(--c-sky) 50%, transparent 51%),
+    radial-gradient(2px 2px at 64% 12%, #fff 50%, transparent 51%),
+    radial-gradient(2px 2px at 82% 36%, var(--c-gold) 50%, transparent 51%),
+    radial-gradient(3px 3px at 50% 60%, var(--c-mint) 50%, transparent 51%);
+  background-size: 260px 180px;
+  animation: twinkle 2.4s steps(2, jump-none) infinite;
+}
+
+.boot__inner {
+  position: relative;
+  display: grid;
+  justify-items: center;
+  gap: 22px;
+}
+
+.boot__studio {
+  font-family: var(--font-pixel);
+  font-size: 9px;
+  color: var(--c-sky);
+  letter-spacing: 0.1em;
+}
+
+.boot__title {
+  display: grid;
+  gap: 6px;
+  line-height: 1.1;
+  animation: drop-in 0.7s steps(7) both;
+}
+
+.boot__title-top {
+  font-size: clamp(1.8rem, 7vw, 4.2rem);
+  color: var(--c-sky);
+  text-shadow:
+    4px 4px 0 var(--c-blue),
+    8px 8px 0 var(--c-deep),
+    12px 12px 0 var(--c-void);
+}
+
+.boot__title-bottom {
+  font-size: clamp(2.2rem, 9vw, 5.4rem);
+  color: var(--c-lime);
+  text-shadow:
+    4px 4px 0 var(--c-green),
+    8px 8px 0 var(--c-forest),
+    12px 12px 0 var(--c-void);
+}
+
+.boot__sub {
+  font-family: var(--font-pixel);
+  font-size: 10px;
+  color: var(--c-gold);
+}
+
+.boot__start {
+  margin-top: 18px;
+  padding: 16px 22px;
+  font-family: var(--font-pixel);
+  font-size: clamp(12px, 2.6vw, 16px);
+  color: var(--c-ice);
+  background: transparent;
+  animation: blink 1s steps(2, jump-none) infinite;
+}
+
+.boot__start:hover,
+.boot__start:focus-visible {
+  color: var(--c-gold);
+  animation-duration: 0.4s;
+}
+
+.boot__meta {
+  font-family: var(--font-pixel);
+  font-size: 8px;
+  color: var(--c-void);
+}
+
+.boot--exit {
+  animation: power-off 0.65s steps(6) forwards;
+}
+
+@keyframes drop-in {
+  from { transform: translateY(-120px); opacity: 0; }
+  to { transform: none; opacity: 1; }
+}
+
+@keyframes power-off {
+  0% { filter: none; }
+  30% { filter: brightness(3); }
+  100% { transform: scaleY(0.004) scaleX(0.6); filter: brightness(4); opacity: 0; }
+}

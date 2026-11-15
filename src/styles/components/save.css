@@ -1,0 +1,68 @@
+/* SAVE FILE — contact slots */
+
+.save {
+  max-width: 760px;
+  margin-inline: auto;
+}
+
+.save__list {
+  display: grid;
+  gap: 10px;
+}
+
+.save__slot {
+  display: grid;
+  grid-template-columns: 18px 8ch 10ch 1fr;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+  text-decoration: none;
+  background: rgba(7, 15, 34, 0.35);
+  box-shadow: 0 0 0 2px rgba(230, 246, 255, 0.2);
+}
+
+.save__slot:hover,
+.save__slot:focus-visible {
+  background: rgba(255, 210, 63, 0.14);
+  box-shadow: 0 0 0 var(--px) var(--c-gold);
+}
+
+.save__cursor {
+  color: var(--c-gold);
+  visibility: hidden;
+}
+
+.save__slot:hover .save__cursor,
+.save__slot:focus-visible .save__cursor {
+  visibility: visible;
+  animation: blink 0.8s steps(2, jump-none) infinite;
+}
+
+.save__no {
+  font-family: var(--font-pixel);
+  font-size: 8px;
+  color: var(--text-dim);
+}
+
+.save__label {
+  font-family: var(--font-pixel);
+  font-size: 10px;
+  color: var(--c-lime);
+}
+
+.save__value {
+  font-size: 1.45rem;
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 560px) {
+  .save__slot {
+    grid-template-columns: 18px 1fr;
+  }
+  .save__no {
+    display: none;
+  }
+  .save__value {
+    grid-column: 2;
+  }
+}

@@ -1,0 +1,25 @@
+/* ==========================================================================
+   Stylesheet entry — bundled by esbuild into dist/css/main.css
+   Order: base → layout → components
+   ========================================================================== */
+
+@import "./base/fonts.css";
+@import "./base/variables.css";
+@import "./base/reset.css";
+@import "./base/typography.css";
+
+@import "./layout/hud.css";
+@import "./layout/sections.css";
+@import "./layout/footer.css";
+
+@import "./components/window.css";
+@import "./components/buttons.css";
+@import "./components/dialog-box.css";
+@import "./components/boot.css";
+@import "./components/player.css";
+@import "./components/worldmap.css";
+@import "./components/quests.css";
+@import "./components/party.css";
+@import "./components/powerups.css";
+@import "./components/save.css";
+@import "./components/effects.css";

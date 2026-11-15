@@ -1,0 +1,16 @@
+{
+  "name": "retro-portfolio",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A retro, handheld-console inspired portfolio built with HTML, CSS and TypeScript.",
+  "scripts": {
+    "build": "npm run typecheck && npm run bundle",
+    "bundle": "esbuild src/ts/main.ts src/styles/main.css --bundle --minify --sourcemap --target=es2019 --outdir=dist --entry-names=[ext]/[name] --external:*.woff2",
+    "dev": "esbuild src/ts/main.ts src/styles/main.css --bundle --sourcemap --target=es2019 --outdir=dist --entry-names=[ext]/[name] --external:*.woff2 --watch --servedir=.",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "esbuild": "^0.28.2",
+    "typescript": "^7.0.2"
+  }
+}

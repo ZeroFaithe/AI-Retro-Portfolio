@@ -1,0 +1,55 @@
+/* CRT overlay, toast, cheat-code rainbow */
+
+.crt {
+  position: fixed;
+  inset: 0;
+  z-index: 150;
+  pointer-events: none;
+  background:
+    repeating-linear-gradient(0deg, rgba(0, 0, 0, 0.16) 0 1px, transparent 1px 3px),
+    radial-gradient(ellipse at center, transparent 62%, rgba(0, 0, 0, 0.38) 100%);
+  animation: flicker 6s steps(1) infinite;
+}
+
+.crt-off .crt {
+  display: none;
+}
+
+@keyframes flicker {
+  0%, 96%, 100% { opacity: 1; }
+  97% { opacity: 0.85; }
+  98% { opacity: 1; }
+  99% { opacity: 0.9; }
+}
+
+.toast {
+  position: fixed;
+  left: 50%;
+  bottom: 24px;
+  z-index: 160;
+  max-width: calc(100vw - 32px);
+  padding: 14px 18px;
+  font-family: var(--font-pixel);
+  font-size: 10px;
+  color: var(--c-lcd-ink);
+  background: var(--c-lcd);
+  box-shadow:
+    0 0 0 var(--px) var(--c-lcd-edge),
+    0 0 0 calc(var(--px) * 2) var(--c-void);
+  visibility: hidden;
+  transform: translate(-50%, calc(100% + 40px));
+  transition: transform 0.25s steps(4), visibility 0.25s;
+}
+
+.toast.is-visible {
+  visibility: visible;
+  transform: translate(-50%, 0);
+}
+
+.is-cheat main {
+  animation: rainbow 1s steps(8) infinite;
+}
+
+@keyframes rainbow {
+  to { filter: hue-rotate(360deg); }
+}

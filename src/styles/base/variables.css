@@ -1,0 +1,49 @@
+/* Design tokens — palette, type, spacing. Blue + green core, warm accents. */
+
+:root {
+  /* Blues */
+  --c-void: #070f22;
+  --c-night: #0a1730;
+  --c-navy: #10244d;
+  --c-deep: #163a80;
+  --c-blue: #2463eb;
+  --c-azure: #3d8bff;
+  --c-sky: #6fd3ff;
+  --c-ice: #e6f6ff;
+
+  /* Greens */
+  --c-forest: #0f6b3e;
+  --c-green: #22b455;
+  --c-lime: #8fe04a;
+  --c-mint: #c6f7cf;
+  --c-teal: #18c3a6;
+
+  /* Accents */
+  --c-gold: #ffd23f;
+  --c-orange: #ff8a3d;
+  --c-pink: #ff5c8a;
+  --c-violet: #8b8cf6;
+  --c-slate: #5b6b8c;
+
+  /* Handheld LCD */
+  --c-lcd: #d3f5c4;
+  --c-lcd-ink: #0f380f;
+  --c-lcd-edge: #306230;
+
+  /* Semantic */
+  --bg: var(--c-void);
+  --text: var(--c-ice);
+  --text-dim: #9fb9e0;
+  --frame: var(--c-ice);
+  --focus: var(--c-gold);
+
+  /* Type */
+  --font-pixel: "Press Start 2P", ui-monospace, "Courier New", monospace;
+  --font-body: "VT323", ui-monospace, "Courier New", monospace;
+
+  /* Pixel unit + layout */
+  --px: 4px;
+  --gap: 24px;
+  --container: 1160px;
+  --hud-h: 64px;
+}

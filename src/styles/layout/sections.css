@@ -1,0 +1,150 @@
+/* Section scaffolding + the hero "world" scene */
+
+main {
+  padding-top: var(--hud-h);
+}
+
+.section {
+  position: relative;
+  padding: 96px 0 104px;
+}
+
+/* chunky checker stripe between levels */
+.section + .section::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  height: 8px;
+  background:
+    repeating-linear-gradient(90deg, var(--c-green) 0 16px, var(--c-blue) 16px 32px);
+}
+
+.section--alt {
+  background-color: var(--c-night);
+  background-image:
+    radial-gradient(rgba(111, 211, 255, 0.12) 1px, transparent 1.5px);
+  background-size: 24px 24px;
+}
+
+.section__head {
+  max-width: 720px;
+  margin-bottom: 48px;
+}
+
+.section__head--center {
+  margin-inline: auto;
+  text-align: center;
+}
+
+.section__eyebrow {
+  display: inline-block;
+  margin-bottom: 14px;
+  padding: 6px 10px;
+  font-family: var(--font-pixel);
+  font-size: 9px;
+  color: var(--c-void);
+  background: var(--c-gold);
+  box-shadow: 0 0 0 var(--px) var(--c-void), 4px 4px 0 var(--px) var(--c-orange);
+}
+
+.section__title {
+  font-size: clamp(1.25rem, 3.4vw, 2.1rem);
+  color: var(--c-ice);
+  text-shadow:
+    3px 3px 0 var(--c-blue),
+    6px 6px 0 var(--c-forest);
+}
+
+.section__lead {
+  margin-top: 16px;
+  font-size: 1.5rem;
+  color: var(--text-dim);
+}
+
+/* ---------------------------------------------------------------- hero */
+.section--hero {
+  min-height: calc(100vh - var(--hud-h));
+  padding: 56px 0 200px;
+  overflow: hidden;
+  background: linear-gradient(
+    180deg,
+    var(--c-night) 0 18%,
+    #0f2350 18% 34%,
+    #15357a 34% 50%,
+    #1d4fa8 50% 64%,
+    #2a6fd6 64% 76%,
+    #4596ee 76% 86%,
+    #6fc0f7 86% 100%
+  );
+}
+
+.section--hero .section__inner {
+  position: relative;
+  z-index: 2;
+}
+
+.scene {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.scene__stars {
+  position: absolute;
+  inset: 0 0 55%;
+  background-image:
+    radial-gradient(2px 2px at 10% 20%, #fff 50%, transparent 51%),
+    radial-gradient(2px 2px at 30% 60%, var(--c-sky) 50%, transparent 51%),
+    radial-gradient(2px 2px at 55% 15%, #fff 50%, transparent 51%),
+    radial-gradient(2px 2px at 72% 45%, var(--c-gold) 50%, transparent 51%),
+    radial-gradient(2px 2px at 88% 25%, #fff 50%, transparent 51%),
+    radial-gradient(2px 2px at 42% 80%, var(--c-mint) 50%, transparent 51%);
+  background-size: 320px 220px;
+  animation: twinkle 3s steps(2, jump-none) infinite;
+}
+
+.cloud {
+  position: absolute;
+  width: 112px;
+  opacity: 0.95;
+  animation: drift linear infinite;
+}
+
+.cloud--1 { top: 58%; left: -10%; animation-duration: 70s; }
+.cloud--2 { top: 70%; left: -10%; width: 168px; animation-duration: 95s; animation-delay: -40s; }
+.cloud--3 { top: 64%; left: -10%; width: 84px; animation-duration: 60s; animation-delay: -22s; }
+
+.scene__hills {
+  position: absolute;
+  inset: auto 0 0;
+  width: 100%;
+  height: 180px;
+}
+
+@keyframes drift {
+  from { transform: translateX(0); }
+  to { transform: translateX(130vw); }
+}
+
+@keyframes twinkle {
+  50% { opacity: 0.55; }
+}
+
+@keyframes blink {
+  50% { opacity: 0; }
+}
+
+@media (max-width: 700px) {
+  .section {
+    padding: 72px 0 80px;
+  }
+  .section--hero {
+    padding: 32px 0 150px;
+  }
+  .scene__hills {
+    height: 120px;
+  }
+  .section__head {
+    margin-bottom: 32px;
+  }
+}

@@ -1,0 +1,68 @@
+/* Handheld LCD dialogue box — green screen, dark ink, blinking ▼ */
+
+.dialog-box {
+  position: relative;
+  margin: var(--px);
+  padding: 18px 22px 22px;
+  color: var(--c-lcd-ink);
+  background: var(--c-lcd);
+  background-image: radial-gradient(rgba(15, 56, 15, 0.08) 1px, transparent 1.2px);
+  background-size: 4px 4px;
+  box-shadow:
+    inset var(--px) var(--px) 0 rgba(15, 56, 15, 0.12),
+    0 calc(var(--px) * -1) 0 var(--c-lcd-edge),
+    0 var(--px) 0 var(--c-lcd-edge),
+    calc(var(--px) * -1) 0 0 var(--c-lcd-edge),
+    var(--px) 0 0 var(--c-lcd-edge),
+    0 0 0 calc(var(--px) * 2) var(--c-void),
+    10px 12px 0 calc(var(--px) * 2) rgba(3, 8, 20, 0.55);
+}
+
+.dialog-box__speaker {
+  display: inline-block;
+  margin-bottom: 8px;
+  padding: 4px 8px;
+  font-family: var(--font-pixel);
+  font-size: 9px;
+  color: var(--c-lcd);
+  background: var(--c-lcd-ink);
+}
+
+.dialog-box__text {
+  min-height: 3.9em;
+  font-size: 1.55rem;
+  line-height: 1.3;
+  cursor: pointer;
+}
+
+.dialog-box__text:focus-visible {
+  outline-color: var(--c-lcd-ink);
+}
+
+.dialog-box__next {
+  position: absolute;
+  right: 18px;
+  bottom: 8px;
+  font-size: 14px;
+  animation: blink 0.9s steps(2, jump-none) infinite;
+}
+
+.dialog-box--slim {
+  padding: 12px 16px;
+  font-size: 1.35rem;
+}
+
+.dialog-box--slim .dialog-box__speaker {
+  margin: 0 10px 0 0;
+}
+
+/* typing caret */
+.tw::after {
+  content: "█";
+  margin-left: 2px;
+  animation: blink 0.6s steps(2, jump-none) infinite;
+}
+
+.is-done .tw::after {
+  content: "";
+}

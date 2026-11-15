@@ -1,0 +1,66 @@
+/* The core RPG "window" panel: notched pixel border, bevel, drop shadow.
+   Colour variants swap --win-top / --win-bottom / --frame. */
+
+.window {
+  --win-top: #2a5fd8;
+  --win-bottom: #173b94;
+  --win-frame: var(--frame);
+  position: relative;
+  margin: var(--px);
+  padding: 24px;
+  background: linear-gradient(180deg, var(--win-top), var(--win-bottom));
+  box-shadow:
+    inset var(--px) var(--px) 0 rgba(255, 255, 255, 0.16),
+    inset calc(var(--px) * -1) calc(var(--px) * -1) 0 rgba(0, 0, 0, 0.22),
+    0 calc(var(--px) * -1) 0 var(--win-frame),
+    0 var(--px) 0 var(--win-frame),
+    calc(var(--px) * -1) 0 0 var(--win-frame),
+    var(--px) 0 0 var(--win-frame),
+    10px 12px 0 rgba(3, 8, 20, 0.55);
+}
+
+.window--green {
+  --win-top: #1d9a4f;
+  --win-bottom: #0f6b3e;
+  --win-frame: var(--c-mint);
+}
+
+.window--slate {
+  --win-top: #45536f;
+  --win-bottom: #2c3750;
+  --win-frame: #b9c4d9;
+}
+
+.window--dark {
+  --win-top: var(--c-navy);
+  --win-bottom: var(--c-night);
+}
+
+.window__label {
+  display: inline-block;
+  margin-bottom: 14px;
+  font-family: var(--font-pixel);
+  font-size: 9px;
+  color: var(--c-gold);
+  letter-spacing: 0.08em;
+}
+
+/* Reveal-on-scroll (only when JS is running) */
+.js [data-reveal] {
+  opacity: 0;
+  transform: translateY(16px);
+  transition:
+    opacity 0.4s steps(4),
+    transform 0.4s steps(4);
+  transition-delay: var(--d, 0ms);
+}
+
+.js [data-reveal].is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* Broken/missing images show a pixel "?" tile instead of an icon */
+img.is-missing {
+  visibility: hidden;
+}
