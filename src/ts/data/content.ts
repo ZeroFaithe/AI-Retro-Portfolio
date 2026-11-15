@@ -20,7 +20,7 @@ export const content: PortfolioContent = {
     program: "BS Information Technology", // [PLACEHOLDER]
     yearLevel: "3 · A", // [PLACEHOLDER]
     location: "ANGELES CITY, PAMPANGA", // [PLACEHOLDER]
-    avatar: "assets/images/profile/avatar-placeholder.svg", // [PLACEHOLDER]
+    avatar: "assets/images/profile/natepic.png", // [PLACEHOLDER]
     bio:
       "Hello, traveler! I'm a BSIT student studying programming, networks, cloud, and AI, with a creative streak that comes from music and design. " +
       "I keep learning the fundamentals even when AI can automate them. " +
